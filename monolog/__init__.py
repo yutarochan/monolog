@@ -8,7 +8,7 @@ from flask import Flask
 
 __version__ = '0.0.1'
 
-app = Flask(__name__, static_url_path='/static', static_folder='/static')
+app = Flask(__name__, static_url_path='/static', static_folder='/static/')
 # app.config.from_object('monolog.config')
 
 import monolog.views
