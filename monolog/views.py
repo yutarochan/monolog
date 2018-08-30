@@ -14,8 +14,8 @@ def home(path):
     return send_from_directory(
         os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
-            'static/build',
+            'static/',
             os.path.split(path)[0]
         ),
         os.path.split(path)[1]
-)
+    )
