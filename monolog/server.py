@@ -13,7 +13,6 @@ def launch(app):
     webbrowser.open_new('http://localhost:' + str(app.config['PORT']))
     http_server.serve_forever()
     '''
-
     # Temp Execution
     port = 8080 if len(sys.argv) < 2 else sys.argv[1]
     app.run(debug=True, port=int(port), host='0.0.0.0')
