@@ -24,16 +24,14 @@ def home(path):
 
 def dashboard():
     # Check for .monolog dot file (redirect to setup wizard if non-existant)
-    if not dotfile.check_root(os.getcwd()):
-        print('DOT FILE DOES NOT EXIST - REDIRECTING TO SETUP WIZARD')
-        return setup()
-
+    if not dotfile.check_config(os.getcwd()):
+        dotfile.make_dotfile(os.getcwd())   # Generate Monolog Dotfolder
+        return setup()                      # Redirect to Setup Page
     return render_template('dashboard.html', page='dashboard')
-
 
 @app.route('/setup')
 def setup():
-    return render_template('setup.html', page='experiments')
+    return render_template('setup.html', page='setup')
 
 @app.route('/experiments')
 def experiments():

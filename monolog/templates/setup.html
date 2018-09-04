@@ -1,5 +1,75 @@
 {% extends "base.html" %}
 
 {% block content %}
-Setup Page!
+<div class="conainer">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <h3>New Project Setup</h3>
+            <br />
+
+            <form id="setup_form">
+                <div class="form-group">
+                    <label for="project-name">Name</label>
+                    <input class="form-control" id="project-name">
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea class="form-control" id="project-description" rows="3"></textarea>
+                </div>
+            </form>
+
+            <div id="setup_prev" hidden>
+                <p>Name</p>
+                <span id="prev_title"></span>
+
+                <br />
+
+                <p>Description</p>
+                <span id="prev_desc"></span>
+            </div>
+
+            <br />
+
+            <button id="prev_btn" type="button" class="btn btn-secondary" onclick="change_mode()">Preview</button>
+            <button type="button" class="btn btn-primary">Create</button>
+        </div>
+        <div class="col-sm 3"></div>
+    </div>
+</div>
+
+<script>
+var mode = 'edit';
+function change_mode() {
+    // Change Preview/Edit Mode
+    if (mode == 'edit') { mode = 'preview'; }
+    else if (mode == 'preview') { mode = 'edit' }
+
+    // Render Results
+    if (mode == 'edit') {
+        // Change Button text
+        document.getElementById('prev_btn').innerHTML = 'Preview';
+
+        // Change Display State
+        document.getElementById('setup_prev').hidden = true;
+        document.getElementById('setup_form').hidden = false;
+    } else if (mode == 'preview') {
+        // Change View Settings
+        document.getElementById('setup_prev').hidden = false;
+        document.getElementById('setup_form').hidden = true;
+
+        // Convert Description Markdown
+        var proj_title = document.getElementById('project-name').value;
+
+        var converter = new showdown.Converter();
+        var text = document.getElementById('project-description').value;
+        var md_desc = converter.makeHtml(text);
+
+        // Render Text Data
+        document.getElementById('prev_title').innerHTML = '<h4><b>' + proj_title + '</b></h4>';
+        document.getElementById('prev_desc').innerHTML = md_desc;
+        document.getElementById('prev_btn').innerHTML = 'Edit'
+    }
+}
+</script>
 {% endblock %}
