@@ -8,6 +8,13 @@ from flask import request, jsonify, send_from_directory, g, render_template, red
 
 from monolog import app, dotfile
 
+def check_dot():
+    # Check for .monolog dot file (redirect to setup wizard if non-existant)
+    if not dotfile.check_dot(os.getcwd()):
+        dotfile.make_dotfile(os.getcwd())   # Generate Monolog Dotfolder
+        return True
+    return False
+
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path:path>')
 def home(path):
@@ -23,10 +30,7 @@ def home(path):
     )
 
 def dashboard():
-    # Check for .monolog dot file (redirect to setup wizard if non-existant)
-    if not dotfile.check_config(os.getcwd()):
-        dotfile.make_dotfile(os.getcwd())   # Generate Monolog Dotfolder
-        return setup()                      # Redirect to Setup Page
+    if check_dot(): return redirect('/setup')           # Redirect to Setup Page
     return render_template('dashboard.html', page='dashboard')
 
 @app.route('/setup')
@@ -36,14 +40,15 @@ def setup():
 @app.route('/setup_submit', methods=['POST', 'GET'])
 def setup_submit():
     if request.method == 'POST':
-        # Generate Config File
         dotfile.make_config(os.getcwd(), request.form['project_name'], request.form['project_desc'])
         return redirect("/")
 
 @app.route('/experiments')
 def experiments():
+    if check_dot(): return redirect('/setup')           # Redirect to Setup Page
     return 'EXPERIMENTS'
 
 @app.route('/hypertune')
 def hypertune():
+    if check_dot(): return redirect('/setup')           # Redirect to Setup Page
     return 'Experiments Page'

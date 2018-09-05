@@ -11,13 +11,12 @@ def check_root(dir):
 def check_config(dir):
     return os.path.isfile(dir + '/.monolog/config')
 
-def check_dotfile(dir):
-    return check_root(dir) and check_config(dir)
-
 def make_dotfile(dir):
     if not os.path.exists(dir + '/.monolog'):
-        print('> MADE NEW DOTFOLDER')
         os.makedirs(dir + '/.monolog')
+
+def check_dot(dir):
+    return check_root(dir) and check_config(dir)
 
 def make_config(dir, name, desc):
     out = open(dir + '/.monolog/config', 'w')
