@@ -8,17 +8,6 @@
             <h3>New Project Setup</h3>
             <br />
 
-            <form id="setup_form">
-                <div class="form-group">
-                    <label for="project-name">Name</label>
-                    <input class="form-control" id="project-name">
-                </div>
-                <div class="form-group">
-                    <label for="project-description">Description</label>
-                    <textarea class="form-control" id="project-description" rows="3"></textarea>
-                </div>
-            </form>
-
             <div id="setup_prev" hidden>
                 <p>Name</p>
                 <span id="prev_title"></span>
@@ -29,10 +18,25 @@
                 <span id="prev_desc"></span>
             </div>
 
-            <br />
 
-            <button id="prev_btn" type="button" class="btn btn-secondary" onclick="change_mode()">Preview</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <form action="/setup_submit" method="POST">
+                <div id="setup_form">
+                    <!-- TODO: Limit to no space only dash and alpha numerics -->
+                    <div class="form-group">
+                        <label for="project-name">Name</label>
+                        <input class="form-control" id="project-name" name="project_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description">Description</label>
+                        <textarea class="form-control" id="project-description" rows="3" name="project_desc"></textarea>
+                    </div>
+                </div>
+
+                <br />
+
+                <button id="prev_btn" type="button" class="btn btn-secondary" onclick="change_mode()">Preview</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
         </div>
         <div class="col-sm 3"></div>
     </div>

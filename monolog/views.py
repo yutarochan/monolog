@@ -4,7 +4,7 @@ Monolog: Deep Learining Experiment Management and Monitoring Dashboard
 Author: Yuya Jeremy Ong (yuyajeremyong@gmail.com)
 '''
 import os
-from flask import request, jsonify, send_from_directory, g, render_template
+from flask import request, jsonify, send_from_directory, g, render_template, redirect
 
 from monolog import app, dotfile
 
@@ -32,6 +32,13 @@ def dashboard():
 @app.route('/setup')
 def setup():
     return render_template('setup.html', page='setup')
+
+@app.route('/setup_submit', methods=['POST', 'GET'])
+def setup_submit():
+    if request.method == 'POST':
+        # Generate Config File
+        dotfile.make_config(os.getcwd(), request.form['project_name'], request.form['project_desc'])
+        return redirect("/")
 
 @app.route('/experiments')
 def experiments():

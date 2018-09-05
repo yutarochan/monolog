@@ -18,3 +18,10 @@ def make_dotfile(dir):
     if not os.path.exists(dir + '/.monolog'):
         print('> MADE NEW DOTFOLDER')
         os.makedirs(dir + '/.monolog')
+
+def make_config(dir, name, desc):
+    out = open(dir + '/.monolog/config', 'w')
+    out.write('[core]\n')
+    out.write('name=' + name + '\n')
+    out.write('desc="' + desc.replace("\r\n", "\\n") + '"\n')
+    out.close()
