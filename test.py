@@ -5,6 +5,8 @@ Author: Yuya Jeremy Ong (yuyajeremyong@gmail.com)
 from __future__ import absolute_import, print_function, division, unicode_literals
 import os
 import sys
+import threading
+import webbrowser as wb
 from monolog import app
 
 if __name__ == '__main__':

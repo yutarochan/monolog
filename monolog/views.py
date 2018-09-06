@@ -31,7 +31,10 @@ def home(path):
 
 def dashboard():
     if check_dot(): return redirect('/setup')           # Redirect to Setup Page
-    return render_template('dashboard.html', page='dashboard')
+
+    app = dotfile.read_config(os.getcwd())
+
+    return render_template('dashboard.html', page='dashboard', app=app)
 
 @app.route('/setup')
 def setup():
