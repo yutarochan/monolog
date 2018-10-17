@@ -12,7 +12,7 @@ def check_root(dir):
     return os.path.isdir(dir + '/.monolog')
 
 def check_config(dir):
-    return os.path.isfile(dir + '/.monolog/config')
+    return os.path.isfile(dir + '/.monolog/config.yaml')
 
 def make_dotfile(dir):
     if not os.path.exists(dir + '/.monolog'):
@@ -24,7 +24,7 @@ def check_dot(dir):
     return check_root(dir) and check_config(dir)
 
 def make_config(dir, name, desc):
-    out = open(dir + '/.monolog/config', 'w')
+    out = open(dir + '/.monolog/config.yaml', 'w')
     out.write('[core]\n')
     out.write('name=' + name + '\n')
     out.write('desc="' + desc.replace("\r\n", "\\n") + '"\n')
@@ -32,7 +32,7 @@ def make_config(dir, name, desc):
 
 def read_config(dir):
     config = configparser.ConfigParser()
-    config.read(dir + '/.monolog/config')
+    config.read(dir + '/.monolog/config.yaml')
 
     config_dict = {}
 

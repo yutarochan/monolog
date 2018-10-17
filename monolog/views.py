@@ -31,7 +31,6 @@ def home(path):
 
 def dashboard():
     if check_dot(): return redirect('/setup')           # Redirect to Setup Page
-
     app = dotfile.read_config(os.getcwd())
 
     return render_template('dashboard.html', page='dashboard', app=app)
@@ -49,7 +48,9 @@ def setup_submit():
 @app.route('/experiments')
 def experiments():
     if check_dot(): return redirect('/setup')           # Redirect to Setup Page
-    return 'EXPERIMENTS'
+    app = dotfile.read_config(os.getcwd())
+    return render_template('experiments.html', page='experiments', app=app)
+    # return 'EXPERIMENTS'
 
 @app.route('/hypertune')
 def hypertune():
