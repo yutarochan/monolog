@@ -15,36 +15,41 @@
         <!-- Runs Table -->
         <div class="col-md-12">
             <h3><b>Experiments</b></h3><br />
+
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Exp ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Tags</th>
+                        <th scope="col">Acc</th>
+                    </tr>
+                </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
     </div>
 </div>
 
 <script>
-var edit_mode = false;
 
-// Generate Markdown
-var converter = new showdown.Converter();
-var text = "{{ app.desc }}";
-var md_desc = converter.makeHtml(text.slice(5, -5));
-var md_elem = document.getElementById("desc");
-md_elem.innerHTML = md_desc;
-
-// Event Handler for Editing Desc
-function edit_desc() {
-    /*
-    var desc_content = document.getElementById("desc_content");
-    var desc = document.getElementById("desc");
-    var desc_edit = document.getElementById("desc_edit");
-
-    if (edit_mode) {
-        desc.display = none;
-    } else {
-        desc_content.removeChild(desc);
-        //desc_content.appendChild(desc_edit);
-        desc_edit.style.visibility = "show"
-    } */
-    console.log("Edit some stuff!");
-}
 </script>
-
 {% endblock %}

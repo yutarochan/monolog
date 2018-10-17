@@ -16,9 +16,9 @@ def check_config(dir):
 
 def make_dotfile(dir):
     if not os.path.exists(dir + '/.monolog'):
-        os.makedirs(dir + '/.monolog')  # Main Directory
-
+        os.makedirs(dir + '/.monolog')        # Main Directory
         os.makedirs(dir + '/.monolog/views')  # View Configuration
+        os.makedirs(dir + '/logs')            # View Configuration
 
 def check_dot(dir):
     return check_root(dir) and check_config(dir)
