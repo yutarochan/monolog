@@ -6,7 +6,7 @@ Author: Yuya Jeremy Ong (yuyajeremyong@gmail.com)
 import os
 import configparser
 
-import monolog.util as util
+import server.util as util
 
 def check_root(dir):
     return os.path.isdir(dir + '/.monolog')

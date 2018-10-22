@@ -6,7 +6,7 @@ Author: Yuya Jeremy Ong (yuyajeremyong@gmail.com)
 import os
 from flask import request, jsonify, send_from_directory, g, render_template, redirect
 
-from monolog import app, dotfile
+from server import app, dotfile, log
 
 def check_dot():
     # Check for .monolog dot file (redirect to setup wizard if non-existant)
@@ -31,7 +31,7 @@ def home(path):
 
 def dashboard():
     if check_dot(): return redirect('/setup')           # Redirect to Setup Page
-    app = dotfile.read_config(os.getcwd())
+    app = dotfile.read_config(os.getcwd())              # Read Configuration Files
 
     return render_template('dashboard.html', page='dashboard', app=app)
 
@@ -49,8 +49,10 @@ def setup_submit():
 def experiments():
     if check_dot(): return redirect('/setup')           # Redirect to Setup Page
     app = dotfile.read_config(os.getcwd())
-    return render_template('experiments.html', page='experiments', app=app)
-    # return 'EXPERIMENTS'
+
+    exp_list = log.get_explist(os.getcwd() + '/logs')
+
+    return render_template('experiments.html', page='experiments', app=app, exp_list=exp_list)
 
 @app.route('/hypertune')
 def hypertune():

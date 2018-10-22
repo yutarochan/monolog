@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container full-width">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="proj_title">
+                <b>{{ app.name }}</b>
+            </h3><br />
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Runs Table -->
+        <div class="col-md-12">
+            <h3><b>Experiments</b></h3><br />
+
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Model</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Model Hash</th>
+                    </tr>
+                </thead>
+              <tbody>
+                  {% for row in exp_list %}
+                  <tr><td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td></tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+{% endblock %}

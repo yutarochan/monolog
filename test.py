@@ -7,7 +7,7 @@ import os
 import sys
 import threading
 import webbrowser as wb
-from monolog import app
+from server import app
 
 if __name__ == '__main__':
     port = 8080 if len(sys.argv) < 2 else sys.argv[1]
