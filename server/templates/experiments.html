@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <h3><b>Experiments</b></h3><br />
 
-            <table class="table table-sm">
+            <table class="table table-sm" id="exp_table">
                 <thead>
                     <tr>
                         <th scope="col">Model</th>
@@ -27,7 +27,7 @@
                 </thead>
               <tbody>
                   {% for row in exp_list %}
-                  <tr><td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td></tr>
+                  <tr><td><a href="/experiments/{{row[3]}}">{{row[0]}}</a></td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td></tr>
                   {% endfor %}
               </tbody>
             </table>
@@ -36,6 +36,11 @@
 </div>
 
 <script>
-
+$(document).ready( function () {
+    $('#exp_table').DataTable({
+        colReorder: true,
+        fixedHeader: true
+    });
+});
 </script>
 {% endblock %}
